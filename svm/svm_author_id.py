@@ -24,7 +24,26 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 #########################################################
 ### your code goes here ###
+from sklearn.svm import SVC
+# clf = SVC(kernel = 'linear')
+
+# Smaller training set
+# features_train = features_train[:len(features_train)/100]
+# labels_train = labels_train[:len(labels_train)/100]
+
+# rbf kernel
+clf = SVC(kernel = 'rbf', C = 10000)
+
+clf.fit(features_train, labels_train)
+#result = clf.score(features_test, labels_test)
+pred = clf.predict(features_test)
+
+result = 0
+
+for i in range(0, len(pred)):
+	if pred[i] == 1:
+		result += 1
 
 #########################################################
 
-
+print (result)
